@@ -1,0 +1,22 @@
+@echo off
+rem Copying this file is optional; Configure-MS-MCP.bat generates the real local file.
+set "NODE_EXE=C:\Program Files\nodejs\node.exe"
+set "NPM_CMD=C:\Program Files\nodejs\npm.cmd"
+set "MS_INSTALL_ROOT=C:\Program Files\BIOVIA\Materials Studio 2024"
+set "MS_MCP_WORK_ROOT=C:\MS-MCP-Workspace"
+set "MS_MCP_QUEUE_DIR=C:\MS-MCP-Workspace\.mcp-queue"
+set "MS_MCP_STRUCTURE_SOURCE_POLICY=auto"
+set "MS_MCP_ALLOW_ARBITRARY_SCRIPT=0"
+set "MS_MCP_ALLOW_GUI_QUEUE=1"
+set "MS_MCP_ALLOW_EXTERNAL_INPUTS=0"
+set "MS_MCP_ALLOWED_CIF_HOSTS=www.crystallography.net,crystallography.net"
+set "MS_MCP_MAX_CIF_BYTES=10485760"
+set "MS_MCP_DASHBOARD_PORT=4877"
+set "MS_MCP_DASHBOARD_AUTOSTART=1"
+set "MS_MCP_DASHBOARD_AUTO_OPEN=0"
+set "MS_MCP_DASHBOARD_WRITE=0"
+set "MS_MCP_MODEL_ROOT="
+set "MS_MCP_REMOTE_SSH_TARGET="
+set "MS_MCP_REMOTE_SSH_KEY=%USERPROFILE%\.ssh\id_ed25519_ms_mcp"
+set "MS_MCP_REMOTE_JOBS_ROOT="
+
