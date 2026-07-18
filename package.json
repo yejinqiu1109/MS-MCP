@@ -1,0 +1,37 @@
+{
+  "name": "ms-mcp",
+  "version": "0.2.0",
+  "description": "External MCP server for controlling BIOVIA Materials Studio through MaterialsScript.",
+  "type": "module",
+  "bin": {
+    "ms-mcp": "./src/index.js"
+  },
+  "scripts": {
+    "start": "node ./src/index.js",
+    "dashboard": "node ./GUI-Dashboard/server.js",
+    "check": "node ./scripts/package-check.js",
+    "inspect": "npx @modelcontextprotocol/inspector node ./src/index.js",
+    "smoke": "node ./scripts/smoke.js",
+    "mcp-smoke": "node ./scripts/mcp-smoke.js",
+    "remote-castep-smoke": "node ./scripts/remote-castep-smoke.js",
+    "individual-castep-smoke": "node ./scripts/individual-castep-smoke.js",
+    "extract-castep-convergence": "node ./scripts/extract-castep-convergence.js",
+    "sync-chapter3-models": "node ./scripts/sync-chapter3-models.js",
+    "security-smoke": "node ./scripts/security-smoke.js"
+  },
+  "keywords": [
+    "mcp",
+    "materials-studio",
+    "materialsscript",
+    "castep",
+    "dmol3",
+    "forcite"
+  ],
+  "author": "shengh_he",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.5",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {}
+}

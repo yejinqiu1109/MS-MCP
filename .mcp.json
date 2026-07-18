@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "MS-MCP": {
+      "title": "MS-MCP",
+      "description": "Control BIOVIA Materials Studio through the configured local MaterialsScript runtime.",
+      "command": "cmd.exe",
+      "args": [
+        "/d",
+        "/c",
+        "Run-MS-MCP.bat"
+      ],
+      "cwd": "."
+    }
+  }
+}

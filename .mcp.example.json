@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "MS-MCP": {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Tools\\MS-MCP\\src\\index.js"
+      ],
+      "env": {
+        "MS_MCP_WORK_ROOT": "C:\\MS-MCP-Workspace",
+        "MS_MCP_STRUCTURE_SOURCE_POLICY": "auto",
+        "MS_INSTALL_ROOT": "C:\\Program Files\\BIOVIA\\Materials Studio 2024",
+        "MS_MCP_ALLOW_ARBITRARY_SCRIPT": "0",
+        "MS_MCP_ALLOW_GUI_QUEUE": "1",
+        "MS_MCP_ALLOW_EXTERNAL_INPUTS": "0",
+        "MS_MCP_ALLOWED_CIF_HOSTS": "www.crystallography.net,crystallography.net"
+      }
+    }
+  }
+}

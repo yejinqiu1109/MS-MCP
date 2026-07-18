@@ -1,0 +1,21 @@
+# Example only. Run Configure-MS-MCP.bat to generate paths for this computer.
+[mcp_servers.MS-MCP]
+command = "C:\\Program Files\\nodejs\\node.exe"
+args = ["C:\\Tools\\MS-MCP\\src\\index.js"]
+cwd = "C:\\Tools\\MS-MCP"
+startup_timeout_sec = 20
+tool_timeout_sec = 1800
+default_tools_approval_mode = "prompt"
+
+[mcp_servers.MS-MCP.env]
+MS_INSTALL_ROOT = "C:\\Program Files\\BIOVIA\\Materials Studio 2024"
+MS_MCP_WORK_ROOT = "C:\\MS-MCP-Workspace"
+MS_MCP_ALLOW_ARBITRARY_SCRIPT = "0"
+MS_MCP_ALLOW_GUI_QUEUE = "1"
+MS_MCP_ALLOW_EXTERNAL_INPUTS = "0"
+MS_MCP_STRUCTURE_SOURCE_POLICY = "auto"
+MS_MCP_ALLOWED_CIF_HOSTS = "www.crystallography.net,crystallography.net"
+MS_MCP_MAX_CIF_BYTES = "10485760"
+MS_MCP_DASHBOARD_PORT = "4877"
+MS_MCP_DASHBOARD_AUTOSTART = "1"
+MS_MCP_DASHBOARD_AUTO_OPEN = "0"
