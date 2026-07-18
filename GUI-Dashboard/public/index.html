@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MS-MCP Dashboard</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar hud-panel">
+        <div>
+          <p class="eyebrow">MS-MCP AR Console</p>
+          <h1>Materials Studio 控制面板</h1>
+        </div>
+        <div class="top-actions">
+          <button id="refreshBtn" class="ghost-btn">刷新</button>
+          <button id="newSessionBtn" class="primary-btn">新建任务会话</button>
+          <button id="stopLoopBtn" class="danger-btn">停止 GUI loop</button>
+        </div>
+      </header>
+
+      <section class="status-grid">
+        <article class="status-card hud-panel">
+          <span class="status-dot" id="mcpDot"></span>
+          <div>
+            <strong>MCP 连接</strong>
+            <p id="mcpText">读取中</p>
+          </div>
+        </article>
+        <article class="status-card hud-panel">
+          <span class="status-dot" id="loopDot"></span>
+          <div>
+            <strong>GUI loop</strong>
+            <p id="loopText">读取中</p>
+          </div>
+        </article>
+        <article class="status-card wide hud-panel">
+          <strong>当前文档</strong>
+          <p id="docText">-</p>
+        </article>
+        <article class="status-card wide hud-panel">
+          <strong>当前任务会话</strong>
+          <p id="sessionText">-</p>
+        </article>
+      </section>
+
+      <section class="remote-monitor hud-panel" aria-labelledby="remoteMonitorTitle">
+        <div class="panel-head remote-monitor-head">
+          <div>
+            <p class="eyebrow">Remote CASTEP Monitor</p>
+            <h2 id="remoteMonitorTitle">远程任务监管</h2>
+          </div>
+          <div class="remote-monitor-controls">
+            <select id="remoteBatchSelect" aria-label="选择远程计算批次"></select>
+            <label class="toggle"><input type="checkbox" id="remoteAutoRefresh" checked /> 每30秒自动刷新</label>
+            <button id="remoteRefreshBtn" class="primary-btn">立即查询</button>
+          </div>
+        </div>
+        <div class="remote-summary-grid">
+          <div class="remote-metric"><span>远程 Job</span><strong id="remoteJobId">-</strong></div>
+          <div class="remote-metric"><span>执行进度</span><strong id="remoteProgressText">- / -</strong></div>
+          <div class="remote-metric wide"><span>当前计算</span><strong id="remoteCurrentTask">等待查询</strong></div>
+          <div class="remote-metric"><span>SSH状态</span><strong id="remoteSshState">未查询</strong></div>
+        </div>
+        <div class="remote-progress" aria-label="远程任务进度">
+          <div id="remoteProgressBar"></div>
+        </div>
+        <p id="remoteMessage" class="remote-message">正在读取本地提交记录……</p>
+        <div id="remoteTaskGrid" class="remote-task-grid"></div>
+        <details class="remote-details">
+          <summary>当前 CASTEP 输出（最近40行）</summary>
+          <pre id="remoteCastepTail">尚未读取</pre>
+        </details>
+      </section>
+
+      <section class="main-grid">
+        <article class="viewer-panel hud-panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Structure Preview</p>
+              <h2>当前结构可视化</h2>
+            </div>
+            <div class="viewer-tools">
+              <label class="toggle"><input type="checkbox" id="spinToggle" checked /> 自动旋转</label>
+              <label class="mini-control">原子 <input id="atomSlider" type="range" min="0.45" max="4.2" step="0.05" value="1.25" /></label>
+              <label class="mini-control">键 <input id="bondSlider" type="range" min="0.45" max="5" step="0.05" value="1.35" /></label>
+              <button id="snapshotBtn" class="ghost-btn">读取当前结构</button>
+              <button id="resetViewBtn" class="ghost-btn">重置视角</button>
+            </div>
+          </div>
+          <div class="viewer-frame">
+            <canvas id="structureCanvas" width="1100" height="680"></canvas>
+            <div class="scanline"></div>
+            <div class="corner c1"></div>
+            <div class="corner c2"></div>
+            <div class="corner c3"></div>
+            <div class="corner c4"></div>
+          </div>
+          <p id="viewerHint" class="viewer-hint">等待结构文件</p>
+        </article>
+
+        <aside class="side-stack">
+          <article class="panel hud-panel">
+            <div class="panel-head compact">
+              <h2>Workspace</h2>
+            </div>
+            <dl class="kv">
+              <dt>Workspace</dt>
+              <dd id="workspaceText">-</dd>
+              <dt>选择任务会话</dt>
+              <dd>
+                <div class="session-picker">
+                  <select id="sessionSelect"></select>
+                  <button id="switchSessionBtn" class="ghost-btn">切换</button>
+                </div>
+              </dd>
+              <dt>Preview XSD</dt>
+              <dd>
+                <div class="document-picker">
+                  <select id="xsdSelect"></select>
+                  <button id="switchXsdBtn" class="ghost-btn">Preview</button>
+                </div>
+              </dd>
+              <dt>任务目录</dt>
+              <dd id="projectRootText">-</dd>
+              <dt>状态文件</dt>
+              <dd id="stateFileText">-</dd>
+            </dl>
+          </article>
+
+          <article class="panel hud-panel">
+            <div class="panel-head compact">
+              <h2>队列</h2>
+            </div>
+            <div class="queue-grid">
+              <div><strong id="pendingCount">0</strong><span>pending</span></div>
+              <div><strong id="runningCount">0</strong><span>running</span></div>
+              <div><strong id="doneCount">0</strong><span>done</span></div>
+              <div><strong id="failedCount">0</strong><span>failed</span></div>
+            </div>
+            <ul id="queueList" class="compact-list"></ul>
+          </article>
+        </aside>
+      </section>
+
+      <section class="lower-grid">
+        <article class="panel hud-panel">
+          <div class="panel-head compact">
+            <h2>常用建模</h2>
+          </div>
+          <div class="button-grid">
+            <button data-model-action="clean">Clean</button>
+            <button data-model-action="adjust_hydrogen">自动加 H</button>
+            <button data-model-action="calculate_bonds">识别键</button>
+            <button data-model-action="clean_adjust_hydrogen">Clean + H</button>
+          </div>
+        </article>
+
+        <article class="panel hud-panel">
+          <div class="panel-head compact">
+            <h2>常用计算</h2>
+          </div>
+          <div class="button-grid">
+            <button data-calc-module="Forcite">Forcite 优化</button>
+            <button data-calc-module="DMol3">DMol3 优化</button>
+            <button data-calc-module="CASTEP">CASTEP 优化</button>
+          </div>
+        </article>
+
+        <article class="panel hud-panel">
+          <div class="panel-head compact">
+            <h2>计算状态</h2>
+          </div>
+          <div id="calcList" class="calc-list"></div>
+        </article>
+      </section>
+    </main>
+    <div id="toast" class="toast"></div>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
+
