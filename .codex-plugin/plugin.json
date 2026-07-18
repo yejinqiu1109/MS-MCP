@@ -1,0 +1,43 @@
+{
+  "name": "ms-mcp",
+  "version": "0.2.0",
+  "description": "External MCP server for controlling BIOVIA Materials Studio through MaterialsScript.",
+  "author": {
+    "name": "shengh_he",
+    "url": "https://github.com/shengh_he"
+  },
+  "homepage": "https://github.com/shengh_he/MS-MCP",
+  "repository": "https://github.com/shengh_he/MS-MCP",
+  "license": "MIT",
+  "keywords": [
+    "materials-studio",
+    "biovia",
+    "materialsscript",
+    "mcp",
+    "castep",
+    "dmol3",
+    "forcite"
+  ],
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "MS-MCP",
+    "shortDescription": "Control Materials Studio through MaterialsScript",
+    "longDescription": "Run MaterialsScript workflows, create new structures through a unified CIF-first entry point, edit the current GUI structure in place, keep outputs organized in numbered task/session folders, build supercells and vacuum slabs, launch Forcite, DMol3, and CASTEP jobs, and inspect generated outputs from Codex through a local MCP server.",
+    "developerName": "shengh_he",
+    "category": "Engineering",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/shengh_he/MS-MCP",
+    "defaultPrompt": [
+      "Check my Materials Studio connection",
+      "Create a new structure with CIF-first lookup",
+      "Run a Forcite geometry optimization"
+    ],
+    "brandColor": "#0F766E",
+    "screenshots": []
+  }
+}
+
