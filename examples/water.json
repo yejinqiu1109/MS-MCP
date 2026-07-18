@@ -1,0 +1,13 @@
+{
+  "documentName": "water.xsd",
+  "atoms": [
+    { "label": "o1", "element": "O", "x": 0.0, "y": 0.0, "z": 0.0 },
+    { "label": "h1", "element": "H", "x": 0.9584, "y": 0.0, "z": 0.0 },
+    { "label": "h2", "element": "H", "x": -0.239, "y": 0.927, "z": 0.0 }
+  ],
+  "bonds": [
+    { "from": "o1", "to": "h1", "order": "Single" },
+    { "from": "o1", "to": "h2", "order": "Single" }
+  ]
+}
+
